@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Chat Signup</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #333;
+      }
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      .form-control {
+        border-radius: 4px;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+      .btn-primary {
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        background-color: #007bff;
+        border: none;
+      }
+      .btn-primary:hover {
+        background-color: #0056b3;
+      }
+      .alert {
+        margin-top: 1rem;
+      }
+      .login-link {
+        text-align: center;
+        margin-top: 1rem;
+      }
+      .login-link a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Student Signup</h2>
+      <form id="studentSignupForm">
+        <div class="form-group">
+          <label for="uniqueUsername">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="uniqueUsername"
+            placeholder="Enter username"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="studentFirstName">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="studentFirstName"
+            placeholder="Enter first name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="studentLastName">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="studentLastName"
+            placeholder="Enter last name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="secretPassword">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="secretPassword"
+            placeholder="Enter password"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Signup</button>
+      </form>
+      <div
+        id="errorMessage"
+        class="alert alert-danger mt-3"
+        style="display: none"
+      ></div>
+      <div class="login-link">
+        <p>Already have an account? <a href="login.html">Login here</a></p>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      $("#studentSignupForm").submit(function (e) {
+        e.preventDefault();
+        var studentUserData = {
+          username: $("#uniqueUsername").val(),
+          firstname: $("#studentFirstName").val(),
+          lastname: $("#studentLastName").val(),
+          password: $("#secretPassword").val(),
+        };
+        $.ajax({
+          type: "POST",
+          url: "/api/signup",
+          data: JSON.stringify(studentUserData),
+          contentType: "application/json",
+          success: function (response) {
+            alert(response.message);
+            window.location.href = "login.html";
+          },
+          error: function (err) {
+            $("#errorMessage").text(err.responseJSON.error).show();
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
