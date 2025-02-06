@@ -1,5 +1,6 @@
 # Student Chat Room
 101431121 - Daria Ignateva
+
 This project is a simple chat room application that allows students to join group chats and private chats. It also includes functionality for logging out, switching between chat tabs, and sending messages.
 
 ## Features
@@ -14,11 +15,17 @@ This project is a simple chat room application that allows students to join grou
 
 Here are some screenshots of the app in action:
 
+### Screenshot 1
+![Screenshot 1](screenshots/screnn1.png)
 
-(screenshots/screnn1.png)
-(screenshots/screen2.png)
-(screenshots/screen3.png)
-(screenshots/screen4.png)
+### Screenshot 2
+![Screenshot 2](screenshots/screen2.png)
+
+### Screenshot 3
+![Screenshot 3](screenshots/screen3.png)
+
+### Screenshot 4
+![Screenshot 4](screenshots/screen4.png)
 
 ## Installation
 
@@ -27,6 +34,7 @@ Here are some screenshots of the app in action:
 
    ```bash
    npm install
+
 3. Run using
    ```bash
    node server.js
